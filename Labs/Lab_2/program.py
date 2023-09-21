@@ -8,39 +8,41 @@ def reliable_path(file_name):
     p = Path(this_file).with_name(file_name)
     return p.absolute()
 
-data_points_path = reliable_path("datapoints.txt")
-print(f"{type(data_points_path) = }")
-print(f"{data_points_path = }")
+def read_measurements():
+    # each item will contain data about a pokemon
+    measurements = []
 
-with open(data_points_path) as file:
-    lines = file.readlines()
+    data_points_path = reliable_path("datapoints.txt")
+    #print(f"{type(data_points_path) = }")
+    #print(f"{data_points_path = }")
 
-# Manage file contents outside with statement above in order to 
-# close the file asap.
+    with open(data_points_path) as file:
+        lines = file.readlines()
 
-# remove "\n" at end of each line
-lines = [line.rstrip() for line in lines]
+    # Manage file contents outside with statement above in order to 
+    # close the file asap.
 
-# remove head line
-lines = lines[1:]
+    # remove "\n" at end of each line:
+    lines = [line.rstrip() for line in lines]
+    # remove first line (header):
+    lines = lines[1:]
 
-# each item will contain data about a pokemon
-measurements = []
+    # interpret data in each line as a measurement
+    for line in lines:
+        line_data = line.split(", ")
+        width = float(line_data[0])
+        height = float(line_data[1])
+        label = int(line_data[2])
+        measurement = {
+            "width": width,
+            "height": height,
+            "label": label
+        }
+        measurements.append(measurement)
+        #print(f"{measurement = }")
+    return measurements
 
-for line in lines:
-    line_data = line.split(", ")
-    width = float(line_data[0])
-    height = float(line_data[1])
-    label = int(line_data[2])
-    measurement = {
-        "width": width,
-        "height": height,
-        "label": label
-    }
-    measurements.append(measurement)
-    print(f"{measurement = }")
-
-# Check if there were any lines read from datapoints.txt
-print(f"{len(lines) = }")
+measurements = read_measurements()
+print(f"{len(measurements)} pokemons have been measured.")
 
 print("End.")
