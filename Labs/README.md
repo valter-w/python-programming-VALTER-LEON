@@ -1,2 +1,2 @@
-#About this folder
-This folder will likely be used to future laboratories...
+# About this folder
+This folder contains laborations from the course.
