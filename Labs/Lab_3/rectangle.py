@@ -21,6 +21,13 @@ class Rectangle(Shape2D):
     def __repr__(self):
         return f"Rectangle(x={self.x}, y={self.y})"
     
+    def __eq__(self, other):
+        return (
+            isinstance(other, Rectangle) and
+            self.width == other.width and
+            self.height == other.height
+        )
+    
     def is_inside(self, x, y):
         # let super class check argument type
         super().is_inside(x, y)

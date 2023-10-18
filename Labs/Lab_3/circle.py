@@ -15,6 +15,12 @@ class Circle(Shape2D):
     def __repr__(self):
         return f"Circle(x={self.x}, y={self.y}, radius={self.radius})"
     
+    def __eq__(self, other):
+        return (
+            isinstance(other, Circle) and 
+            self.radius == other.radius
+        )
+    
     def is_inside(self, x, y):
         # let super class check argument type
         super().is_inside(x, y)
