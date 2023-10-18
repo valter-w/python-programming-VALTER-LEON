@@ -13,10 +13,10 @@ class Shape2D:
 
     def is_inside(self, x, y):
         if not Shape2D._is_numeric(x):
-            raise TypeError("argument 'x' must be of type 'int' or 'float'")
+            raise TypeError("both arguments must be of type 'int' or 'float'")
         
         if not Shape2D._is_numeric(y):
-            raise TypeError("argument 'y' must be of type 'int' or 'float'")
+            raise TypeError("both arguments must be of type 'int' or 'float'")
 
         return False
     
