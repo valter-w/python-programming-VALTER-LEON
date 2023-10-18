@@ -2,6 +2,7 @@ from shape2d import Shape2D
 
 class Rectangle(Shape2D):
     def __init__(self, x=0, y=0, width=1, height=1):
+        """Initializes a rectangle of size width * height with center at (x,y)"""
         super().__init__(x, y)
 
         if not Shape2D._is_numeric(width):
@@ -21,7 +22,13 @@ class Rectangle(Shape2D):
     def __repr__(self):
         return f"Rectangle(x={self.x}, y={self.y})"
     
+    def __str__(self):
+        return (f"rectangle of size {self.width} * {self.height}"
+                f" with its center at ({self.x},{self.y})."
+        )
+    
     def __eq__(self, other):
+        """Checks if two rectangles are of equal width and height."""
         return (
             isinstance(other, Rectangle) and
             self.width == other.width and
@@ -29,6 +36,7 @@ class Rectangle(Shape2D):
         )
     
     def is_inside(self, x, y):
+        """Checks if a point (x,y) are within the rectangles's area."""
         # let super class check argument type
         super().is_inside(x, y)
 
@@ -37,6 +45,7 @@ class Rectangle(Shape2D):
         return within_x and within_y
 
     def is_square(self):
+        """Checks if width and height are equal."""
         return self.width == self.height
     
     @property
