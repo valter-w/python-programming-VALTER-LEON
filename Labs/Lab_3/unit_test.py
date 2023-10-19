@@ -51,7 +51,7 @@ def test_rectangle():
     assert rectangle_1.is_inside(0.25, 0.25), "The point (0.25,0.25) should be inside 'rectangle_1'."
     assert rectangle_1.is_inside(-0.25, -0.25), "The point (-0.25,-0.25) should be inside 'rectangle_1'."
     assert not rectangle_1.is_inside(1, 1), "The point (1,1) should not be inside 'rectangle_1'."
-    assert not rectangle_1.is_inside(-1, 1), "The point (1,1) should not be inside 'rectangle_1'."
+    assert not rectangle_1.is_inside(-1, -1), "The point (-1,-1) should not be inside 'rectangle_1'."
 
     assert rectangle_1.is_square(), "A rectangle with the same width and height is a square."
     assert not Rectangle(width=1, height=2).is_square(), "A rectangle with different width and height is not a square."
@@ -68,3 +68,56 @@ def test_area_operators():
 
     assert unit_circle - math.pi == 0, "When subtracting a number from a 2D shape, the number should be subtracted from the shape's area."
     assert unit_circle - unit_circle == 0, "When subtracting one 2D shape from another, it's the area that should be subtracted."
+
+
+
+def test_sphere():
+    sphere_1 = Sphere(radius=1)
+    sphere_2 = Sphere(x=2, y=-2, z=10, radius=1)
+    assert sphere_1 == sphere_2, "Two spheres of equal size are equal, regardless of coordinates."
+    assert not sphere_1 < sphere_2, "A sphere is not less than another sphere of the same size."
+    assert not sphere_1 > sphere_2, "A sphere is not greater than another sphere of the same size."
+
+    big_sphere = Sphere(radius=2)
+    assert sphere_1 != big_sphere, "Two spheres of different size are not equal."
+    assert sphere_1 < big_sphere, "A smaller sphere is less than a larger sphere."
+    assert sphere_1 <= big_sphere, "A smaller sphere is less than or equal to a larger sphere."
+    assert not sphere_1 > big_sphere, "A smaller sphere is not greater than a larger sphere."
+    assert not sphere_1 >= big_sphere, "A smaller sphere is not greater than or equal to a larger sphere."
+
+    assert sphere_1.is_inside(0.5, 0.5, 0.5), "The point (0.5,0.5,0.5) should be inside 'sphere_1'."
+    assert sphere_1.is_inside(-0.5, -0.5, +0.5), "The point (-0.5,-0.5,-0.5) should be inside 'sphere_1'."
+    assert not sphere_1.is_inside(1, 1, 1), "The point (1,1,1) should not be inside 'sphere_1'."
+    assert not sphere_1.is_inside(-1, -1, -1), "The point (-1,-1,-1) should not be inside 'sphere_1'."
+
+
+
+def test_cube():
+    cube_1 = Cube(side_length=1)
+    cube_2 = Cube(x=2, y=-2, z=10, side_length=1)
+    assert cube_1 == cube_2, "Two cubes of equal size should be considered equal regardless of coordinates."
+    assert not cube_1 < cube_2, "A cube should not be considered less than another cube of the same size"
+    assert not cube_1 > cube_2, "A cube should not be considered greater than another cube of the same size."
+
+    big_cube = Cube(side_length=2)
+    assert cube_1 != big_cube, "Two cubes of different size are inequal."
+    assert cube_1 < big_cube, "A smaller cube is less than a larger cube."
+    assert cube_1 <= big_cube, "A smaller cube is less than or equal to a larger cube."
+    assert not cube_1 > big_cube, "A smaller cube is not greater than a larger cube."
+    assert not cube_1 >= big_cube, "A smaller cube is not greater than or equal to a larger cube"
+
+    assert cube_1.is_inside(0.25, 0.25, 0.25), "The point (0.25,0.25) should be inside 'cube_1'."
+    assert cube_1.is_inside(-0.25, -0.25, -0.25), "The point (-0.25,-0.25,-0.25) should be inside 'cube_1'."
+    assert not cube_1.is_inside(1, 1, 1), "The point (1,1,1) should not be inside 'cube_1'."
+    assert not cube_1.is_inside(-1, -1, 1), "The point (-1,-1,-1) should not be inside 'cube_1'."
+
+
+
+def test_volume_operators():
+    """Test '+' and '-' operators with three-dimensional shapes"""
+    sphere = Sphere(radius=1)
+    assert sphere + 100 == sphere.volume + 100, "When adding a number to a 3D shape, the number should be added to the shape's volume."
+    assert sphere + sphere == (8 * math.pi)/3, "When adding two 3D shapes, their volumes should be added."
+
+    assert sphere - (4 * math.pi)/3 == 0, "When subtracting a number from a 3D shape, the number should be subtracted from the shape's volume."
+    assert sphere - sphere == 0, "When subtracting one 3D shape from another, it's the volume that should be subtracted."
