@@ -3,7 +3,7 @@ from shape3d import Shape3D
 class Cube(Shape3D):
     """Represents a cube in a three-dimensional space."""
     def __init__(self, x=0, y=0, z=0, side_length=1):
-        """Initialize a cube of given length with its center at (x,y,z)"""
+        """Initialize a cube of given side length and its center at (x,y,z)"""
         super().__init__(x, y, z)
 
         if not Shape3D._is_numeric(side_length):
@@ -33,9 +33,9 @@ class Cube(Shape3D):
         super().is_inside(x, y, z)
         
         half_length = self.side_length / 2
-        within_x = (self.x - half_length) < x < (self.x +  half_length)
-        within_y = (self.y -  half_length) < y < (self.y +  half_length)
-        within_z = (self.z -  half_length) < z < (self.z +  half_length)
+        within_x = (self.x - half_length) < x < (self.x + half_length)
+        within_y = (self.y - half_length) < y < (self.y + half_length)
+        within_z = (self.z - half_length) < z < (self.z + half_length)
         return within_x and within_y and within_z
     
     @property

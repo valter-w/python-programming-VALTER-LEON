@@ -1,6 +1,7 @@
 from shape2d import Shape2D
 
 class Rectangle(Shape2D):
+    """Represents a rectangle in a two-dimensional space"""
     def __init__(self, x=0, y=0, width=1, height=1):
         """Initializes a rectangle of size width * height with center at (x,y)"""
         super().__init__(x, y)
@@ -20,11 +21,13 @@ class Rectangle(Shape2D):
             self._height = height
 
     def __repr__(self):
-        return f"Rectangle(x={self.x}, y={self.y})"
+        return (f"Rectangle(x={self.x}, y={self.y}, "
+                f"width={self.width}, height={self.height})"
+        )
     
     def __str__(self):
         return (f"rectangle of size {self.width} * {self.height}"
-                f" with its center at ({self.x},{self.y})."
+                f" with its center at ({self.x},{self.y})"
         )
     
     def __eq__(self, other):
@@ -36,8 +39,8 @@ class Rectangle(Shape2D):
         )
     
     def is_inside(self, x, y):
-        """Checks if a point (x,y) are within the rectangles's area."""
-        # let super class check argument type
+        """Checks if a point (x,y) is within the rectangles's area."""
+        # let super class check arguments' types
         super().is_inside(x, y)
 
         within_x = (self.x - self.width/2) < x < (self.x + self.width/2)

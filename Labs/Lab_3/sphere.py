@@ -27,10 +27,11 @@ class Sphere(Shape3D):
         return isinstance(other, Sphere) and self.radius == other.radius
     
     def is_inside(self, x, y, z):
-        """Checks if a point (x,y) are within the cirle's area."""
+        """Checks if a point (x,y,z) is within the sphere's body."""
         # let super class check argument type
         super().is_inside(x, y, z)
         
+        # calculate Euclidean distance in a 3D space
         delta_x = self.x - x
         delta_y = self.y - y
         delta_z = self.z - z

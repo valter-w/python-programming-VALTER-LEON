@@ -67,7 +67,7 @@ class Shape3D:
     def _is_numeric(arg):
         return type(arg) in [int, float]
     
-    
+    # Helpful function for overloaded comparison operators
     def _check_operands(l_operand, r_operand, operator):
         # Use dunder attribute typ(obj).__name__ to get an objects's 
         # class name a helpful for error message
@@ -79,7 +79,7 @@ class Shape3D:
             )
 
     def is_inside(self, x, y, z):
-        """Checks if a point (x,y,z) are within the shape."""
+        """Checks if a point (x,y,z) is within the shape's body."""
         # checking types, useful for subclasses:
         if not Shape3D._is_numeric(x):
             raise TypeError("all 3 arguments must be of type 'int' or 'float'")

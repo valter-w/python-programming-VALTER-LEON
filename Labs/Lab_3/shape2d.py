@@ -1,5 +1,5 @@
 class Shape2D:
-    """A super class for classes representeing shapes in a 2D space."""
+    """A super class for classes representing shapes in a 2D space."""
     def __init__(self, x=0, y=0):
         """Initializes a new shape with its center at (x,y)."""
         self.translate(x, y)
@@ -65,7 +65,7 @@ class Shape2D:
     def _is_numeric(arg):
         return type(arg) in [int, float]
     
-    
+    # Helpful function for overloaded comparison operators
     def _check_operands(l_operand, r_operand, operator):
         # Use dunder attribute typ(obj).__name__ to get an objects's 
         # class name a helpful for error message

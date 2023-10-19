@@ -19,21 +19,19 @@ class Circle(Shape2D):
     
     def __str__(self):
         return (f"circle with a radius {self.radius}"
-                f" with its center at ({self.x},{self.y})."
+                f" with its center at ({self.x},{self.y})"
         )
     
     def __eq__(self, other):
         """Checks if two circles are of equal radius, regardless of coordinates."""
-        return (
-            isinstance(other, Circle) and 
-            self.radius == other.radius
-        )
+        return isinstance(other, Circle) and self.radius == other.radius
     
     def is_inside(self, x, y):
         """Checks if a point (x,y) are within the cirle's area."""
-        # let super class check argument type
+        # let super class check arguments' types
         super().is_inside(x, y)
         
+        # calculate Euclidean distance in a 2D space
         delta_x = self.x - x
         delta_y = self.y - y
         distance = math.sqrt(delta_x**2 + delta_y**2)
